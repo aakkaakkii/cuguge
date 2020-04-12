@@ -1,0 +1,56 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost/cuguge
+    username: postgres
+    password: postgres
+  jpa:
+    generate-ddl: true
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  main:
+    allow-bean-definition-overriding: true
+  #mail
+  mail:
+    host: smtp.gmail.com
+    username: cuguge2020@gmail.com
+    password: cugu2demo
+    port: 587
+    protocol: smtp
+
+mail:
+  starttls:
+    enable: true
+  auth: true
+  debug: true
+
+#auth
+jwt:
+  token:
+    secret: JWTeDiToRaPp
+    expired: 32400000
+
+auth:
+  login:
+    endpoints:
+      google: /api/auth/login/google
+      facebook: api/auth/login/facebook
+
+
+google:
+  client:
+    clientId: 1017412956447-eifqard2r5ahtuhkt02la0bsshvtetbb.apps.googleusercontent.com
+    clientSecret: FynpAv3AL4KxKyne8jyiyH4u
+    accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+    userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+    clientAuthenticationScheme: form
+    scope: openid,email,profile
+  resources:
+    userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
+    preferTokenInfo: true
+
+#swagger
+swagger:
+  enabled: true
