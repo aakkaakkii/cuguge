@@ -9,9 +9,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @EnableWebMvc
 public class AppConf implements WebMvcConfigurer {
+    //TODO can be removed?
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**");
+//        .allowedMethods("GET", "POST", "PUT", "DELETE").allowedHeaders("*");
     }
 
     @Override

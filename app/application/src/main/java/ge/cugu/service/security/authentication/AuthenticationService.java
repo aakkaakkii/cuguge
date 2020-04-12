@@ -32,7 +32,11 @@ public class AuthenticationService implements AuthenticationUseCase {
     }
 
     @Override
-    public String googleAut(OAuthRequestModel oAuthRequestModel) {
+    public String googleAut(OAuthRequestModel oAuthRequestModel) throws LoginFailedException {
+        if (oAuthRequestModel == null || oAuthRequestModel.getToken() == null ) {
+            throw new LoginFailedException();
+        }
+
         User user = oAuthPort.googleAuth(oAuthRequestModel.getToken());
         User userFromDb = userPort.findByUsername(user.getUsername());
 

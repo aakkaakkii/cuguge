@@ -14,7 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
-@CrossOrigin
 public class User {
     private final RegisterUserUseCase registerUserUseCase;
     private final ListUsersUseCase listUsersUseCase;
@@ -22,6 +21,11 @@ public class User {
     @GetMapping
     public List<UserResponseModel> loadUsers(){
         return listUsersUseCase.loadUsers();
+    }
+
+    @GetMapping("/tesr")
+    public String loadUsers2(){
+        return "asdasdasdas";
     }
 
 }

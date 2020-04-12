@@ -14,7 +14,6 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api/registration")
 @RequiredArgsConstructor
-@CrossOrigin
 public class RegisterUser {
     private final RegisterUserUseCase registerUserUseCase;
 
