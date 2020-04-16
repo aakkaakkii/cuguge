@@ -54,3 +54,10 @@ google:
 #swagger
 swagger:
   enabled: true
+
+#amazon
+amazon:
+  bucket:
+    privateKey: AKIAJ26LL65JHU7MK4HQ
+    publicKey: HJx9J4+3DumxASK071p/L3nHHC+pqU8Aw30NTPBv
+    region: eu-central-1
