@@ -17,7 +17,7 @@ export const loginReducer = (state = defaultState, action) => {
                 ...state,
                 password: action.payload
             }
+        default:
+            return state;
     }
-
-    return state;
 }

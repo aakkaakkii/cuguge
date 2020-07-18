@@ -1,9 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
-import {setPasswordText, setUsernameText} from "../../store/login/actions";
-import {Button, Container, TextField, Typography} from "@material-ui/core";
+import {login, setPasswordText, setUsernameText} from "../../store/login/actions";
+import {Button, Container, TextField} from "@material-ui/core";
 import GoogleLogin from "react-google-login";
-import FacebookLogin from 'react-facebook-login';
 import {googleAuth} from "../../api/security/login";
 import {Link} from "react-router-dom";
 
@@ -20,6 +19,15 @@ class Login extends React.Component {
     responseGoogle = (response) => {
         //TODO: change
         googleAuth(response.tokenId);
+    }
+
+    login = () => {
+        let user = {
+            username: this.props.username,
+            password: this.props.password,
+        }
+
+        this.props.login(user);
     }
 
     /*
@@ -45,19 +53,19 @@ class Login extends React.Component {
                 <TextField
                     type='password'
                     variant="outlined"
-                    label="Enter Username"
+                    label="Enter Password"
                     name='password'
                     margin="normal"
                     fullWidth
-                    value={this.props.username}
-                    onChange={this.onUsernameChange}
+                    value={this.props.password}
+                    onChange={this.onPasswordChange}
                 />
                 <Button
                     variant="contained"
                     color="primary"
                     margin="normal"
                     fullWidth
-                    onClick={this.handleSubmit}
+                    onClick={this.login}
                 >
                     Log in
                 </Button>
@@ -87,7 +95,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     setUsernameText: setUsernameText,
-    setPasswordText: setPasswordText
+    setPasswordText: setPasswordText,
+    login: login,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

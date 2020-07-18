@@ -53,7 +53,7 @@ export const registrationReducer = (state = defaultState, action) => {
                 error: action.payload,
                 dataStatus: DATA_STATUS_ERROR
             }
+        default:
+            return state;
     }
-
-    return state;
 }

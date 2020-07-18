@@ -1,24 +1,12 @@
 import React from "react";
 import {connect} from "react-redux";
 import {setPasswordText, setUsernameText} from "../../store/login/actions";
-import {Button, Container, TextField, Typography} from "@material-ui/core";
-import GoogleLogin from "react-google-login";
-import {googleAuth} from "../../api/security/login";
-import {Link} from "react-router-dom";
+import {Button, Container, TextField} from "@material-ui/core";
 
 
 class ForgotPassword extends React.Component {
     onUsernameChange = (event) => {
         this.props.setUsernameText(event.target.value);
-    }
-
-    onPasswordChange = (event) => {
-        this.props.setPasswordText(event.target.value);
-    }
-
-    responseGoogle = (response) => {
-        //TODO: change
-        googleAuth(response.tokenId);
     }
 
     render() {

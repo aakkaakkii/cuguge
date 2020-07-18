@@ -1,0 +1,11 @@
+.ShortPost{}
+
+.Title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.ShortPost > img {
+    max-width: 96%;
+    height: auto;
+}

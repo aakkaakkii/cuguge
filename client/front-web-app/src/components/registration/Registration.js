@@ -1,8 +1,13 @@
 import React from "react";
 import {connect} from "react-redux";
-import {setPasswordText, setUsernameText, setMailText, setRepeatPasswordText, register} from "../../store/registration/actions";
-import {Container, TextField, Button} from "@material-ui/core";
-import {registerUser} from "../../api/security/registration";
+import {
+    register,
+    setMailText,
+    setPasswordText,
+    setRepeatPasswordText,
+    setUsernameText
+} from "../../store/registration/actions";
+import {Button, Container, TextField} from "@material-ui/core";
 
 
 class Registration extends React.Component {
