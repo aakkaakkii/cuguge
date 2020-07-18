@@ -20,14 +20,4 @@ public class UserResponseModel {
     private String img;
     private Set<User.Role> roles;
 
-    public static UserResponseModel fromDomain(User domain) {
-        return UserResponseModel.builder()
-                .id(domain.getId())
-                .username(domain.getUsername())
-                .mail(domain.getMail())
-                .active(domain.isActive())
-                .img(domain.getImg())
-                .roles(domain.getRoles())
-                .build();
-    }
 }

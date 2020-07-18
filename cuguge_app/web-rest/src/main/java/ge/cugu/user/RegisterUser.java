@@ -3,7 +3,7 @@ package ge.cugu.user;
 import ge.cugu.port.in.user.RegisterUserUseCase;
 import ge.cugu.port.in.user.exception.PasswordDidntMatchException;
 import ge.cugu.port.in.user.exception.UserAlreadyExists;
-import ge.cugu.port.model.requestmodel.user.CreateUserRequestModel;
+import ge.cugu.port.model.requestmodel.user.RegisterUserRequestModel;
 import ge.cugu.port.model.responsemodel.user.UserResponseModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ public class RegisterUser {
     private final RegisterUserUseCase registerUserUseCase;
 
     @PostMapping
-    public UserResponseModel createUser(@RequestBody @Valid CreateUserRequestModel user)
+    public UserResponseModel createUser(@RequestBody @Valid RegisterUserRequestModel user)
             throws PasswordDidntMatchException, UserAlreadyExists {
         return registerUserUseCase.register(user);
     }

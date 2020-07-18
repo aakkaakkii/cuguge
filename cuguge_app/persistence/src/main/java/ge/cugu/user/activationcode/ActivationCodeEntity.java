@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "activation_code")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

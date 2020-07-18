@@ -2,6 +2,7 @@ package ge.cugu.oauth;
 
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import ge.cugu.domain.image.Image;
 import ge.cugu.domain.user.User;
 import ge.cugu.port.out.authentication.OAuthPort;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
@@ -56,11 +57,14 @@ public class OAuth implements OAuthPort {
                     .username("GOOGLE-" + payload.getSubject())
                     .mail(payload.getEmail())
                     .name((String) payload.get("name"))
-                    .img((String) payload.get("picture"))
+                    .img(Image.builder()
+                            .fullPath((String) payload.get("picture"))
+                            .build())
                     .build();
 
         } else {
-            System.out.println("Invalid ID token.");;
+            System.out.println("Invalid ID token.");
+            ;
         }
 
 

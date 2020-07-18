@@ -1,5 +1,6 @@
 package ge.cugu.domain.user;
 
+import ge.cugu.domain.image.Image;
 import lombok.Builder;
 import lombok.Data;
 
@@ -14,7 +15,7 @@ public class User {
     private String password;
     private String mail;
     private boolean active;
-    private String img;
+    private Image img;
     private Set<Role> roles;
     private Type type;
 

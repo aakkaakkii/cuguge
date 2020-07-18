@@ -5,7 +5,7 @@ import ge.cugu.domain.user.User;
 import java.util.List;
 
 public interface UserPort {
-    List<User> findAll();
+    List<User> findAll(int start, int limit);
     User findById(Long id);
     User findByMail(String mail);
     User findByMailOrUsernameAndType(String mailOrUsername, User.Type type);

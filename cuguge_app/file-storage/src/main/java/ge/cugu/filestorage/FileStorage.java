@@ -5,6 +5,9 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.util.IOUtils;
+import ge.cugu.bucket.BucketNames;
+import ge.cugu.domain.image.Image;
+import ge.cugu.port.out.file.FileStoragePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +18,13 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class FileStorage {
+public class FileStorage implements FileStoragePort {
 
     private final AmazonS3 s3;
 
-    public void save(String path, String filename,
-                     Optional<Map<String, String>> optionalMetaData,
-                     InputStream is) {
+    public Image save(String path, String filename,
+                      Optional<Map<String, String>> optionalMetaData,
+                      InputStream is) {
         ObjectMetadata metadata = new ObjectMetadata();
 
         optionalMetaData.ifPresent(map -> {
@@ -30,7 +33,12 @@ public class FileStorage {
             }
         });
 
-        s3.putObject(path, filename, is, metadata);
+        s3.putObject( String.format("%s/%s", BucketNames.IMAGE_BUCKET, path), filename, is, metadata);
+
+        return Image.builder()
+                .fullPath(path+ '/' + filename)
+                .name(filename)
+                .build();
     }
 
     public byte[] download(String path, String key) {
@@ -42,5 +50,9 @@ public class FileStorage {
             e.printStackTrace();
             throw new IllegalStateException("Failed to download");
         }
+    }
+
+    public String getBucketPath(){
+        return s3.getUrl(BucketNames.IMAGE_BUCKET, "").toExternalForm();
     }
 }

@@ -2,6 +2,7 @@ package ge.cugu.user;
 
 import com.sun.istack.NotNull;
 import ge.cugu.domain.user.User;
+import ge.cugu.image.ImageEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,7 +27,8 @@ public class UserEntity {
     private String password;
     private String mail;
     private boolean active;
-    private String img;
+    @OneToOne
+    private ImageEntity img;
     @ElementCollection(targetClass = User.Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)

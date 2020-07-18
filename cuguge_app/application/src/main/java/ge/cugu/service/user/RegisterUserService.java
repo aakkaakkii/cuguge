@@ -5,7 +5,9 @@ import ge.cugu.domain.user.User;
 import ge.cugu.port.in.user.RegisterUserUseCase;
 import ge.cugu.port.in.user.exception.PasswordDidntMatchException;
 import ge.cugu.port.in.user.exception.UserAlreadyExists;
+import ge.cugu.port.mapper.UserMapper;
 import ge.cugu.port.model.requestmodel.user.CreateUserRequestModel;
+import ge.cugu.port.model.requestmodel.user.RegisterUserRequestModel;
 import ge.cugu.port.model.responsemodel.user.UserResponseModel;
 import ge.cugu.port.out.authentication.AuthUtilPort;
 import ge.cugu.port.out.mail.MailPort;
@@ -24,9 +26,10 @@ public class RegisterUserService implements RegisterUserUseCase {
     private final ActivationCodePort activationCodePort;
     private final MailPort mailPort;
     private final AuthUtilPort authUtilPort;
+    private final UserMapper userMapper;
 
     @Override
-    public UserResponseModel register(CreateUserRequestModel user) throws PasswordDidntMatchException, UserAlreadyExists {
+    public UserResponseModel register(RegisterUserRequestModel user) throws PasswordDidntMatchException, UserAlreadyExists {
 
         if (!user.getPassword().equals(user.getRepeatPassword())) {
             throw new PasswordDidntMatchException();
@@ -52,7 +55,7 @@ public class RegisterUserService implements RegisterUserUseCase {
 
         sendActivationCode(addedUser);
 
-        return UserResponseModel.fromDomain(addedUser);
+        return userMapper.toUserResponse(addedUser);
     }
 
     @Override

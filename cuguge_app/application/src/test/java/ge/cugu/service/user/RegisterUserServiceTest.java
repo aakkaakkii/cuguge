@@ -29,8 +29,8 @@ public class RegisterUserServiceTest {
     private RegisterUserService registerUserService;
 
     public RegisterUserServiceTest() {
-        MockitoAnnotations.initMocks(this);
-        this.registerUserService = new RegisterUserService(userPort, activationCodePort, mailPort, authUtilPort);
+//        MockitoAnnotations.initMocks(this);
+//        this.registerUserService = new RegisterUserService(userPort, activationCodePort, mailPort, authUtilPort);
     }
 /*
 

@@ -12,6 +12,8 @@ import ge.cugu.port.out.user.UserPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService implements AuthenticationUseCase {
@@ -41,7 +43,9 @@ public class AuthenticationService implements AuthenticationUseCase {
         User userFromDb = userPort.findByUsername(user.getUsername());
 
         if (userFromDb == null) {
+            //TODO save google image
             user.setActive(true);
+            user.setRoles(Collections.singleton(User.Role.USER));
             user.setType(User.Type.GOOGLE);
             userFromDb = userPort.add(user);
         }

@@ -12,7 +12,7 @@ public class AuthUtil implements AuthUtilPort {
 
     @Override
     public boolean checkPassword(String password, String passwordFromDb) {
-        return passwordEncoder.matches(passwordFromDb, password);
+        return passwordEncoder.matches(password, passwordFromDb);
     }
 
     @Override

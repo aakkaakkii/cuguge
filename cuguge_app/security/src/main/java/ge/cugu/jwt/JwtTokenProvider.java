@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
@@ -29,10 +28,10 @@ public class JwtTokenProvider implements JwtTokenProviderPort {
     @Qualifier("jwt")
     private UserDetailsService userDetailsService;
 
-    @PostConstruct
+/*    @PostConstruct
     protected void init() {
         secret = Base64.getEncoder().encodeToString(secret.getBytes());
-    }
+    }*/
 
     public String createToken(String username, Set<User.Role> roles) {
 
@@ -73,8 +72,8 @@ public class JwtTokenProvider implements JwtTokenProviderPort {
             return !claims.getBody().getExpiration().before(new Date());
         } catch (JwtException | IllegalArgumentException e) {
             e.printStackTrace();
+            return false;
         }
-        return false;
     }
 
     private List<String> getRoleNames(Set<User.Role> userRoles) {
